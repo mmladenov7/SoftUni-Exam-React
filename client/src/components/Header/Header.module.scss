@@ -1,0 +1,28 @@
+.header {
+    background: #0E1635;
+    color: #fdfdfd;
+    height: 60px;
+    padding-right: 60px;
+    margin: -20px -8px 0 -20px;
+    border-bottom: 2px solid #00308F;
+
+    ul {
+        width: 100%;
+
+        li {
+            float: right;
+            display: inline;
+            position: relative;
+            padding-top: 10px;
+
+            a {
+                display: block;
+                line-height: 45px;
+                padding-right: 14px;
+                text-decoration: none;
+                color: #C0C0C0;
+                font-size: 18px;
+            }
+        }
+    }
+}
