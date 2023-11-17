@@ -7,6 +7,7 @@ export default function Header() {
                 <li><a href="/users/register">Profile</a></li>
                 <li><a href="/users/register">Register</a></li>
                 <li><a href="/users/login">Login</a></li>
+                <li className={styles.logo}><a href="/">Carstagram</a></li>
             </ul>
         </nav>
     )
