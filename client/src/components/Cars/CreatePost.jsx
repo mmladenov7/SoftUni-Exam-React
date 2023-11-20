@@ -41,7 +41,7 @@ export default function CreatePost() {
                         <input type="text" name="brand" id="brand" placeholder="Brand" value={post.brand} onChange={changeHandler} />
                         <input type="text" name="model" id="model" placeholder="Model" value={post.model} onChange={changeHandler} />
                         <input type="text" name="productionYear" id="productionYear" placeholder="Production Year" value={post.productionYear} onChange={changeHandler} />
-                        <input type="textarea" name="description" id="description" placeholder="Description" value={post.description} onChange={changeHandler} />
+                        <input type="text" name="description" id="description" placeholder="Description" value={post.description} onChange={changeHandler} />
                         <button type="submit">Post</button>
                     </form>
                 </div>
