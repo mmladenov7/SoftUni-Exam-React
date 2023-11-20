@@ -17,8 +17,11 @@ export default function CreatePost() {
     async function onSubmitHandler(e) {
         e.preventDefault()
 
-        // const response = await apiFetch.post('users/register', post)
-        console.log(post)
+        const createdAt = new Date().toLocaleDateString()
+        const newPost = { ...post, createdAt }
+
+        const response = await apiFetch.post('posts/create', newPost)
+        console.log(await response.JSON)
     }
 
     return (
