@@ -28,10 +28,10 @@ export default function Register() {
                     <img src='https://w0.peakpx.com/wallpaper/310/1013/HD-wallpaper-mustang-car-cars.jpg' />
                     <form onSubmit={(e) => onSubmitHandler(e)} >
                         <h2>Carstagram</h2>
-                        <input type="text" name="username" id="username" placeholder="username" value={user.username} onChange={changeHandler} />
-                        <input type="text" name="email" id="email" placeholder="email" value={user.email} onChange={changeHandler} />
-                        <input type="password" name="password" id="password" placeholder="password" value={user.password} onChange={changeHandler} />
-                        <input type="password" name="repeatPassword" id="repeatPassword" placeholder="repeat password" value={user.repeatPassword} onChange={changeHandler} />
+                        <input type="text" name="username" id="username" placeholder="Username" value={user.username} onChange={changeHandler} />
+                        <input type="text" name="email" id="email" placeholder="Email" value={user.email} onChange={changeHandler} />
+                        <input type="password" name="password" id="password" placeholder="Password" value={user.password} onChange={changeHandler} />
+                        <input type="password" name="repeatPassword" id="repeatPassword" placeholder="Repeat Password" value={user.repeatPassword} onChange={changeHandler} />
                         <button type="submit">Register</button>
                         <p>
                             Already have an account? <a href="/users/login">Log in</a>
