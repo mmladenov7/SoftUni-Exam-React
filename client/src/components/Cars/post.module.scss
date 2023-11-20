@@ -1,0 +1,25 @@
+$gray-var: #C0C0C0;
+$dark-blue-var: #0E1635;
+$light-blue-var: #00308F;
+$border-var: 2px ridge $light-blue-var;
+$border-shadow-var: 5px 5px 5px 5px $dark-blue-var;
+
+.post {
+    margin: 60px auto;
+    width: 600px;
+    height: 550px;
+    display: flex;
+    border: $border-var;
+    box-shadow: $border-shadow-var;
+
+    button{
+        margin-top: 20px;
+    }
+}
+
+h2 {
+    color: $gray-var;
+    padding-top: 10px;
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}

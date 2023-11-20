@@ -5,6 +5,7 @@ export default function Header() {
     return (
         <nav className={styles.header}>
             <ul>
+                <li><Link to="/posts/create">Create Post</Link></li>
                 <li><Link to="/users/register">Profile</Link></li>
                 <li><Link to="/users/register">Register</Link></li>
                 <li><Link to="/users/login">Login</Link></li>

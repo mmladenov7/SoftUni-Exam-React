@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import styles from './../Form.module.scss'
+import styles from './../auth.module.scss'
 import apiFetch from '../../../api'
 
 const startUser = { email: "", password: "" }
