@@ -74,11 +74,10 @@ h2 {
 }
 
 .register {
-    margin-top: 60px;
+    margin: 60px auto;
     width: 800px;
     height: 500px;
-    margin-left: 550px;
-    display: inline-flex;
+    display: flex;
     border: $border-var;
     box-shadow: $border-shadow-var;
 
@@ -88,11 +87,10 @@ h2 {
 }
 
 .login {
-    margin-top: 60px;
+    margin: 60px auto;
     width: 700px;
     height: 380px;
-    margin-left: 600px;
-    display: inline-flex;
+    display: flex;
     border: $border-var;
     box-shadow: $border-shadow-var;
 
