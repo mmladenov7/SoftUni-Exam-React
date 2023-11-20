@@ -10,10 +10,10 @@ function App() {
   return (
     <>
       <Header />
-        <Routes>
-          <Route path="/users/login" element={<Login />} />
-          <Route path="/users/register" element={<Register />} />
-        </Routes>
+      <Routes>
+        <Route path="/users/login" element={<Login />} />
+        <Route path="/users/register" element={<Register />} />
+      </Routes>
       <Footer />
     </>
   )
