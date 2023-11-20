@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react'
 import styles from './post.module.scss'
 import apiFetch from '../../api'
+import { useNavigate } from "react-router-dom"
 
 const startPost = { imageUrl: "", brand: "", model: "", description: "", productionYear: "" }
 
 export default function CreatePost() {
     const [post, setPost] = useState(startPost)
+    const navigate = useNavigate()
 
     function changeHandler(e) {
         setPost(data => ({
@@ -20,9 +22,12 @@ export default function CreatePost() {
         const createdAt = new Date().toLocaleDateString("en-gb")
         const newPost = { ...post, createdAt }
 
-        const response = await apiFetch.post('posts/create', newPost)
-        const test = await response.json()
-        console.log(test)
+        const response = await apiFetch.post("posts/create", newPost)
+
+
+        if (response.status == 200) {
+            navigate("/posts")
+        }
     }
 
     return (
