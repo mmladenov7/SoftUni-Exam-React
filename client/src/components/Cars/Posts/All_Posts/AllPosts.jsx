@@ -10,7 +10,7 @@ export default function AllPosts() {
         apiFetch.get("posts")
             .then(data => data.json())
             .then(result => setPosts(result))
-    }, [posts])
+    }, [])
 
     return (
         <>
