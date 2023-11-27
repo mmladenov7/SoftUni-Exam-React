@@ -11,9 +11,10 @@ module.exports = (router, postManager) => {
 
     router.post("/create", async (req, res) => {
         const { imageUrl, brand, model, productionYear, description, createdAt } = req.body
+        const token = req.header('Authorization')
 
         try {
-            const post = await postManager.create(imageUrl, brand, model, productionYear, description, createdAt)
+            const post = await postManager.create(imageUrl, brand, model, productionYear, description, createdAt, token)
             res.status(200).send(post)
         } catch (err) {
             res.status(404).send(err.message)

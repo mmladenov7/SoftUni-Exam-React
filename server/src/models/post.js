@@ -23,6 +23,10 @@ module.exports = (mongoose) => {
         createdAt: {
             type: String,
             required: true
+        },
+        owner: {
+            type: mongoose.Types.ObjectId,
+            ref: "User"
         }
     })
 

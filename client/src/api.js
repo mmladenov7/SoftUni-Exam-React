@@ -6,6 +6,8 @@ class BaseApi {
 
     async _requestHandler(method, url, data) {
         let currentUrl = this.baseUrl + url
+        const user = JSON.parse(localStorage.getItem('user'))?.token
+
         const settings = {
             method,
             headers: {}
@@ -14,6 +16,10 @@ class BaseApi {
         if (data) {
             settings.headers["Content-Type"] = "application/json"
             settings.body = JSON.stringify(data)
+        }
+
+        if (user) {
+            settings.headers["Authorization"] = user
         }
 
         let response = await fetch(currentUrl, settings)
