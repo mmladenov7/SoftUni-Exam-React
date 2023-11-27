@@ -4,7 +4,15 @@ module.exports = (router, userManager, jwt, SECRET) => {
 
         try {
             const user = await userManager.login(email, password)
-            res.status(200).send(user)
+            const payload = {
+                _id: user._id,
+                email: user.email
+            }
+
+            const token = await jwt.sign(payload, SECRET)
+            const response = JSON.stringify({ token, email, _id: user._id })
+
+            res.status(200).send(response)
         } catch (err) {
             res.status(404).send(err.message)
         }
@@ -16,7 +24,15 @@ module.exports = (router, userManager, jwt, SECRET) => {
 
         try {
             const user = await userManager.register(username, email, password, repeatPassword)
-            res.status(200).send(user)
+            const payload = {
+                _id: user._id,
+                email: user.email
+            }
+
+            const token = await jwt.sign(payload, SECRET)
+            const response = JSON.stringify({ token, email, _id: user._id })
+
+            res.status(200).send(response)
         } catch (err) {
             res.status(404).send(err.message)
         }
