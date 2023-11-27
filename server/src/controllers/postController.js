@@ -1,4 +1,4 @@
-module.exports = (router, postManager) => {
+module.exports = (router, postManager, userManager, jwt, SECRET) => {
     router.get("/", async (req, res) => {
         const posts = await postManager.getAll()
 
@@ -11,10 +11,15 @@ module.exports = (router, postManager) => {
 
     router.post("/create", async (req, res) => {
         const { imageUrl, brand, model, productionYear, description, createdAt } = req.body
+
         const token = req.header('Authorization')
+        const ownerToken = await jwt.verify(token, SECRET)
+        const owner = ownerToken._id
 
         try {
-            const post = await postManager.create(imageUrl, brand, model, productionYear, description, createdAt, token)
+            const post = await postManager.create(imageUrl, brand, model, productionYear, description, createdAt, owner)
+            userManager.addPost(owner, post._id)
+
             res.status(200).send(post)
         } catch (err) {
             res.status(404).send(err.message)

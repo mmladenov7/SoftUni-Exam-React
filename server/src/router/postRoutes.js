@@ -1,7 +1,5 @@
-module.exports = (router, mongoose, jwt, SECRET) => {
-    const Post = require('../models/post')(mongoose)
-    const postManager = require('../managers/postManager')(Post, jwt, SECRET)
+module.exports = (router, postManager, userManager, jwt, SECRET) => {
     const postController = require('../controllers/postController')
 
-    return postController(router, postManager)
+    return postController(router, postManager, userManager, jwt, SECRET)
 }

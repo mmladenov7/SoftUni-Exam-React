@@ -10,13 +10,14 @@ module.exports = (User, bcrypt) => {
             }
 
             password = await bcrypt.hash(password, 10)
+            const posts = []
 
-            const newUser = new User({ username, email, password })
+            const newUser = new User({ username, email, password, posts })
             await newUser.save()
 
             return newUser
         },
-        login: async function async(email, password) {
+        login: async function (email, password) {
             const user = await User.findOne({ email: email }).lean()
 
             const passMatch = await bcrypt.compare(password, user.password)
@@ -26,6 +27,12 @@ module.exports = (User, bcrypt) => {
             }
 
             return user
+        },
+        addPost: async function (id, postId) {
+            const user = await User.findOne({ _id: id })
+
+            user.posts.push(postId)
+            await user.save()            
         }
     }
 }

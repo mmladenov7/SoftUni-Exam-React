@@ -1,9 +1,7 @@
-module.exports = (Post, jwt, SECRET) => {
+module.exports = (Post) => {
     return {
-        create: async function (imageUrl, brand, model, productionYear, description, createdAt, token) {
-            const owner = await jwt.verify(token, SECRET)
-
-            const newPost = new Post({ imageUrl, brand, model, productionYear, description, createdAt, owner: owner._id })
+        create: async function (imageUrl, brand, model, productionYear, description, createdAt, owner) {
+            const newPost = new Post({ imageUrl, brand, model, productionYear, description, createdAt, owner })
             await newPost.save()
 
             return newPost
