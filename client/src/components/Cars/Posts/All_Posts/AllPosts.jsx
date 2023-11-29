@@ -18,11 +18,13 @@ export default function AllPosts() {
                 {posts.map((x) => (
                     <PostItem
                         key={x._id}
+                        _id = {x._id}
                         imageUrl={x.imageUrl}
                         brand={x.brand}
                         model={x.model}
                         productionYear={x.productionYear}
                         description={x.description}
+                        //owner
                     />
                 ))}
             </div>
