@@ -9,6 +9,17 @@ module.exports = (router, postManager, userManager, jwt, SECRET) => {
         }
     })
 
+    router.get('/:_id', async (req, res) => {
+        const _id = req.params._id
+
+        try{
+            const post = await postManager.getOne(_id)
+            res.status(200).send(post)
+        } catch(err){
+            res.status(404).send(err.message)
+        }
+    })
+
     router.post("/create", async (req, res) => {
         const { imageUrl, brand, model, productionYear, description, createdAt } = req.body
 

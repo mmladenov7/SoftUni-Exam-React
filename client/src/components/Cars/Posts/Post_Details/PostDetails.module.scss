@@ -112,7 +112,7 @@ $border-shadow-var: 5px 5px 5px 5px $dark-blue-var;
 
         textarea{
             margin: 0;
-            padding: 0;
+            padding: 5px;
             border-radius: 0;
             width: 100%;
             height: 100%;
@@ -138,5 +138,7 @@ $border-shadow-var: 5px 5px 5px 5px $dark-blue-var;
     
     button:hover{
         cursor: pointer;
+        zoom: 120%;
     }
+
 }

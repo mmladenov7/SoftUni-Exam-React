@@ -8,6 +8,9 @@ module.exports = (Post) => {
         },
         getAll: async function () {
             return Post.find().select('_id imageUrl brand model productionYear description owner')
+        },
+        getOne: async function(_id){
+            return Post.findById(_id)
         }
     }
 }
