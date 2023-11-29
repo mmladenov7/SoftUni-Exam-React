@@ -14,7 +14,7 @@ export default function Header() {
                 {isLogged ?
                     <>
                         <li><Link to="/posts/create">Create Post</Link></li>
-                        <li><Link to="/users/register">Profile</Link></li>
+                        <li><Link to="/users/">Profile</Link></li>
                     </>
                     :
                     <>

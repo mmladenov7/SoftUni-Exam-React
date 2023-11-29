@@ -34,6 +34,7 @@ export default function PostDetails() {
                 </div>
                 <div className={styles.detailsInteract}>
                     <div className={styles.detailsLike}>
+                        <p>78 Likes</p>
                         <button>Like</button>
                     </div>
                     <form>
