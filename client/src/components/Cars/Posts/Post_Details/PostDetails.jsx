@@ -6,13 +6,25 @@ import apiFetch from '../../../../api'
 export default function PostDetails() {
     const { _id } = useParams()
     const [post, setPost] = useState({})
+    const [likes, setLikes] = useState(0)
 
     useEffect(() => {
         apiFetch.get(`posts/${_id}`)
-        .then(data => data.json())
-        .then(data => setPost(data))
+            .then(data => data.json())
+            .then(data => setPost(data))
     }, [])
 
+    useEffect(() => {
+        apiFetch.get(`likes/${_id}`)
+            .then(data => data.json())
+            .then(data => setLikes(Number(data)))
+    }, [likes])
+
+    async function like() {
+        const request = await apiFetch.post(`likes/${_id}`)
+        const response = await request.json()
+        setLikes(state => state + Number(response))
+    }
 
     return (
         <div className={styles.details}>
@@ -34,8 +46,8 @@ export default function PostDetails() {
                 </div>
                 <div className={styles.detailsInteract}>
                     <div className={styles.detailsLike}>
-                        <p>78 Likes</p>
-                        <button>Like</button>
+                        <p>{likes} Likes</p>
+                        <button onClick={like}>Like</button>
                     </div>
                     <form>
                         <textarea type='text' name='comment' id='comment' placeholder='Add comment...' />

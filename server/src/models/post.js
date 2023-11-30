@@ -27,15 +27,7 @@ module.exports = (mongoose) => {
         owner: {
             type: mongoose.Types.ObjectId,
             ref: "User"
-        },
-        likes:[{
-            type: mongoose.Types.ObjectId,
-            ref: "User"
-        }],
-        comments:[{
-            type: mongoose.Types.ObjectId,
-            ref: "User"
-        }]
+        }
     })
 
     const Post = mongoose.model("Post", schema)

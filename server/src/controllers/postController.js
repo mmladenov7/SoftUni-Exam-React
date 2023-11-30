@@ -1,4 +1,4 @@
-module.exports = (router, postManager, userManager, jwt, SECRET) => {
+module.exports = (router, postManager, jwt, SECRET) => {
     router.get("/", async (req, res) => {
         const posts = await postManager.getAll()
 
@@ -29,7 +29,6 @@ module.exports = (router, postManager, userManager, jwt, SECRET) => {
 
         try {
             const post = await postManager.create(imageUrl, brand, model, productionYear, description, createdAt, owner)
-            userManager.addPost(owner, post._id)
 
             res.status(200).send(post)
         } catch (err) {
