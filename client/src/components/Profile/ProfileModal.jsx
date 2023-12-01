@@ -1,11 +1,8 @@
 import apiFetch from '../../api'
 import { useForm } from '../../hooks/useForm'
 import styles from './Profile.module.scss'
-import AuthContext from '../../contexts/AuthContext'
-import { useContext } from 'react'
 
-export default function ProfileModal({updateImage}) {
-    const { user } = useContext(AuthContext)
+export default function ProfileModal({ updateImage, user }) {
     const { data, changeHandler } = useForm({
         imageUrl: ""
     })

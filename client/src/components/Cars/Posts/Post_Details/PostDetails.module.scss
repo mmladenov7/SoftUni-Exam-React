@@ -96,6 +96,8 @@ $border-shadow-var: 5px 5px 5px 5px $dark-blue-var;
     height: 46%;
     margin: 0;
     padding: 0;
+    overflow-y: scroll;
+    padding-right: 17px;
 }
 
 .detailsInteract {
@@ -151,4 +153,50 @@ $border-shadow-var: 5px 5px 5px 5px $dark-blue-var;
         zoom: 120%;
     }
 
+}
+
+.comment {
+    width: 100%;
+    height: 110px;
+    padding-bottom: 5px;
+    display: flex;
+}
+
+.commentImg {
+    width: 15%;
+    height: 100%;
+    padding: 10px;
+
+    img {
+        width: 100%;
+        height: 50%;
+        border: $border-var;
+        border-radius: 50%;
+    }
+}
+
+.commentInfo {
+    width: 85%;
+    height: 100%;
+
+    h2 {
+        padding: 10px;
+        padding-bottom: 5px;
+        margin: 0;
+        text-align: left;
+        font-size: 1rem;
+    }
+}
+
+.commentText {
+    width: 93%;
+    height: 55%;
+    margin-left: 10px;
+
+    p {
+        padding: 0;
+        margin: 0;
+        color: $gray-var;
+        font-size: small;
+    }
 }

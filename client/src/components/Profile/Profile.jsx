@@ -1,11 +1,14 @@
 import styles from './Profile.module.scss'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import apiFetch from '../../api'
 import ProfilePost from './ProfilePost'
 import ProfileModal from './ProfileModal'
+import AuthContext from '../../contexts/AuthContext'
 
 export default function Profile() {
+    const { user } = useContext(AuthContext)
+
     const { _id } = useParams()
     const [currentUser, setCurrentUser] = useState({})
     const [posts, setPosts] = useState([])
@@ -34,7 +37,13 @@ export default function Profile() {
             .then(data => setPosts(data))
     }
 
-    function updateImage({imageUrl}) {
+    function showModalHandler() {
+        if (user._id === _id) {
+            setShowModal(state => !state)
+        }
+    }
+
+    function updateImage({ imageUrl }) {
         setCurrentUser(state => ({ ...state, imageUrl }))
         setShowModal(false)
     }
@@ -42,9 +51,9 @@ export default function Profile() {
     return (
         <div className={styles.profileBody}>
             <div className={styles.profilePictureContainer}>
-                {showModal && <ProfileModal updateImage={updateImage} />}
+                {showModal && <ProfileModal updateImage={updateImage} user={user} />}
                 <div className={styles.profilePicture}>
-                    <img src={currentUser?.imageUrl} onClick={() => setShowModal(state => !state)} />
+                    <img src={currentUser?.imageUrl} onClick={showModalHandler} />
                 </div>
             </div>
             <h1 className={styles.username}>{currentUser?.username}</h1>
