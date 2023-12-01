@@ -30,6 +30,9 @@ module.exports = (User, bcrypt) => {
         },
         getOne: async function (_id) {
             return User.findById(_id).select('username email imageUrl')
+        },
+        changeImageUrl: async function (_id, imageUrl) {
+            return User.findByIdAndUpdate(_id, imageUrl)
         }
     }
 }

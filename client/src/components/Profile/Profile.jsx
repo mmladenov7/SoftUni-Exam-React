@@ -3,11 +3,13 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import apiFetch from '../../api'
 import ProfilePost from './ProfilePost'
+import ProfileModal from './ProfileModal'
 
 export default function Profile() {
     const { _id } = useParams()
     const [currentUser, setCurrentUser] = useState({})
     const [posts, setPosts] = useState([])
+    const [showModal, setShowModal] = useState(false)
 
     useEffect(() => {
         apiFetch.get(`users/${_id}`)
@@ -22,7 +24,7 @@ export default function Profile() {
     }, [])
 
     useEffect(() => {
-    }, [posts])
+    }, [posts, currentUser])
 
     function gatherPosts(e) {
         const path = e.target.name
@@ -32,11 +34,17 @@ export default function Profile() {
             .then(data => setPosts(data))
     }
 
+    function updateImage({imageUrl}) {
+        setCurrentUser(state => ({ ...state, imageUrl }))
+        setShowModal(false)
+    }
+
     return (
         <div className={styles.profileBody}>
             <div className={styles.profilePictureContainer}>
+                {showModal && <ProfileModal updateImage={updateImage} />}
                 <div className={styles.profilePicture}>
-                    <img src={currentUser?.imageUrl} />
+                    <img src={currentUser?.imageUrl} onClick={() => setShowModal(state => !state)} />
                 </div>
             </div>
             <h1 className={styles.username}>{currentUser?.username}</h1>

@@ -57,5 +57,14 @@ module.exports = (router, userManager, jwt, SECRET) => {
         }
     })
 
+    router.put('/:_id', async (req, res) => {
+        const _id = req.params._id
+        const imageUrl = req.body
+
+        await userManager.changeImageUrl(_id, imageUrl)
+
+        res.status(200).send('ok')
+    })
+
     return router
 }
