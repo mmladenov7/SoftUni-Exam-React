@@ -44,5 +44,18 @@ module.exports = (router, userManager, jwt, SECRET) => {
         console.log("TODO")
     })
 
+    router.get("/:_id", async (req, res) => {
+        const _id = req.params._id
+
+        try {
+            const user = await userManager.getOne(_id)
+            const response = JSON.stringify(user)
+
+            res.status(200).send(response)
+        } catch (err) {
+            res.status(404).send(err.message)
+        }
+    })
+
     return router
 }

@@ -8,6 +8,7 @@ export default function PostDetails() {
     const [post, setPost] = useState({})
     const [likes, setLikes] = useState(0)
 
+
     useEffect(() => {
         apiFetch.get(`posts/${_id}`)
             .then(data => data.json())
@@ -31,9 +32,9 @@ export default function PostDetails() {
             <img src={post.imageUrl}></img>
             <div className={styles.detailsInfo}>
                 <div className={styles.detailsUser}>
-                    <img src="https://wallpapers.com/images/hd/cool-profile-picture-87h46gcobjl5e4xu.jpg"></img>
+                    <img src={post.owner?.imageUrl}></img>
                     <div className={styles.detailsPostInfo}>
-                        <h2>Username</h2>
+                        <h2>{post.owner?.username}</h2>
                         <h3>{post.brand}</h3>
                         <p>{post.model} {post.productionYear}</p>
                     </div>

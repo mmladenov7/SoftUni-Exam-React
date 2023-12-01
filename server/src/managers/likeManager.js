@@ -2,8 +2,6 @@ module.exports = (Like) => {
     return {
         like: async (post, user) => {
             const isLiked = await Like.find({ post, user })
-            console.log(isLiked)
-            console.log(isLiked.length > 0)
 
             if (isLiked.length > 0) {
                 await Like.findOneAndDelete({ _id: isLiked[0]._id })

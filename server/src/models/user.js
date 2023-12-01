@@ -12,10 +12,9 @@ module.exports = (mongoose) => {
             type: String,
             required: true
         },
-        posts: [{
-            type: mongoose.Types.ObjectId,
-            ref: "Post"
-        }]
+        imageUrl: {
+            type: String
+        }
     })
 
     const User = mongoose.model("User", schema)

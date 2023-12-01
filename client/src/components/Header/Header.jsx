@@ -6,6 +6,7 @@ import AuthContext from '../../contexts/AuthContext'
 export default function Header() {
     const { user } = useContext(AuthContext)
     const isLogged = Object.keys(user).length > 0
+    const profile = `/users/${user._id}`
 
     return (
         <nav className={styles.header}>
@@ -14,7 +15,7 @@ export default function Header() {
                 {isLogged ?
                     <>
                         <li><Link to="/posts/create">Create Post</Link></li>
-                        <li><Link to="/users/">Profile</Link></li>
+                        <li><Link to={profile}>Profile</Link></li>
                     </>
                     :
                     <>

@@ -1,0 +1,49 @@
+$gray-var: #C0C0C0;
+$dark-blue-var: #0E1635;
+$light-blue-var: #00308F;
+$border-var: 2px ridge $light-blue-var;
+$border-shadow-var: 5px 5px 5px 5px $dark-blue-var;
+
+.profilePicture {
+    height: 200px;
+    width: 200px;
+    margin: 100px auto;
+    margin-bottom: 0;
+    border: $border-var;
+    border-radius: 50%;
+    overflow: hidden;
+
+    img {
+        height: 100%;
+        width: 100%;
+    }
+}
+
+.username {
+    color: $gray-var;
+    text-align: center;
+}
+
+.postbuttons {
+    width: 400px;
+    margin: auto;
+    padding: 0 ;
+
+    button {
+        font-family: Arial, Helvetica, sans-serif;
+        border-radius: 5px;
+        padding: 10px 20px;
+        margin: 1%;
+        font-size: 18px;
+        background-color: $light-blue-var;
+        color: $gray-var;
+        width: 48%;
+        border: none;
+    }
+
+    button:hover {
+        cursor: pointer;
+        background-color: $gray-var;
+        color: $light-blue-var;
+    }
+}

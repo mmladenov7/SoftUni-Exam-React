@@ -10,9 +10,9 @@ module.exports = (User, bcrypt) => {
             }
 
             password = await bcrypt.hash(password, 10)
-            const posts = []
+            const imageUrl = 'https://thinksport.com.au/wp-content/uploads/2020/01/avatar-.jpg'
 
-            const newUser = new User({ username, email, password, posts })
+            const newUser = new User({ username, email, password, imageUrl })
             await newUser.save()
 
             return newUser
@@ -28,11 +28,8 @@ module.exports = (User, bcrypt) => {
 
             return user
         },
-        addPost: async function (id, postId) {
-            const user = await User.findOne({ _id: id })
-
-            user.posts.push(postId)
-            await user.save()            
+        getOne: async function (_id) {
+            return User.findById(_id).select('username email imageUrl')
         }
     }
 }
