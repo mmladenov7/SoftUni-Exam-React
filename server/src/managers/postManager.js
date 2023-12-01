@@ -10,7 +10,10 @@ module.exports = (Post) => {
             return Post.find().select('_id imageUrl brand model productionYear description owner')
         },
         getOne: async function (_id) {
-            return Post.findById(_id).populate('owner')
+            return Post.findById(_id).populate('owner', '_id username imageUrl')
+        },
+        getByOwnerId: async function (ownerId) {
+            return Post.find({ owner: ownerId }).select('_id imageUrl')
         }
     }
 }

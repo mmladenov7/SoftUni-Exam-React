@@ -16,6 +16,11 @@ module.exports = (Like) => {
         getLikesForPost: async (post) => {
             const likes = await Like.find({ post })
             return `${likes.length}`
+        },
+        getLikesByUser: async (user) => {
+            const posts = await Like.find({ user }).populate('post', 'imageUrl').select('post')
+            const data = posts.map(x => ({_id: x.post?._id, imageUrl: x.post?.imageUrl}))
+            return data
         }
     }
 }

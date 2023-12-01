@@ -12,10 +12,10 @@ module.exports = (router, postManager, jwt, SECRET) => {
     router.get('/:_id', async (req, res) => {
         const _id = req.params._id
 
-        try{
+        try {
             const post = await postManager.getOne(_id)
             res.status(200).send(post)
-        } catch(err){
+        } catch (err) {
             res.status(404).send(err.message)
         }
     })
@@ -35,6 +35,17 @@ module.exports = (router, postManager, jwt, SECRET) => {
             res.status(404).send(err.message)
         }
 
+    })
+
+    router.get("/user/:ownerId", async (req, res) => {
+        const ownerId = req.params.ownerId
+
+        try {
+            const post = await postManager.getByOwnerId(ownerId)
+            res.status(200).send(post)
+        } catch (err) {
+            res.status(404).send(err.message)
+        }
     })
 
     return router
