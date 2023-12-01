@@ -1,15 +1,23 @@
+import { Link } from 'react-router-dom'
 import styles from './PostDetails.module.scss'
 
-export default function Comments() {
-    <div className={styles.comment}>
-        <div className={styles.commentImg}>
-            <img src='https://wallpapers.com/images/hd/cool-profile-picture-87h46gcobjl5e4xu.jpg' />
-        </div>
-        <div className={styles.commentInfo}>
-            <h2>Username</h2>
-            <div className={styles.commentText}>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem debitis facilis eum voluptatibus quidem molestiae minus earum soluta? Doloremque, expedita!</p>
+export default function Comments({
+    imageUrl,
+    username,
+    userId,
+    text
+}) {
+    return (
+        <div className={styles.comment}>
+            <div className={styles.commentImg}>
+                <Link to={`/users/${userId}`}><img src={imageUrl} /></Link>
+            </div>
+            <div className={styles.commentInfo}>
+                <h2>{username}</h2>
+                <div className={styles.commentText}>
+                    <p>{text}</p>
+                </div>
             </div>
         </div>
-    </div>
+    )
 }

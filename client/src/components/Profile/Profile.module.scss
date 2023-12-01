@@ -31,6 +31,10 @@ $border-shadow-var: 5px 5px 5px 5px $dark-blue-var;
         height: 100%;
         width: 100%;
     }
+
+    img:hover{
+        cursor: pointer;
+    }
 }
 
 .username {
@@ -80,6 +84,8 @@ $border-shadow-var: 5px 5px 5px 5px $dark-blue-var;
     img {
         width: 100%;
         height: 100%;
+        object-fit: cover;
+        background-position-x: center;
     }
 
 }
