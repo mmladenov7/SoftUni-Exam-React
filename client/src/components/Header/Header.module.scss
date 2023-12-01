@@ -1,19 +1,21 @@
 .header {
+    width: 100%;
+    height: 75px;
+    position: fixed;
+    top: 0;
     background: #0E1635;
     color: #fdfdfd;
-    height: 60px;
     padding-right: 60px;
     margin: -20px -8px 0px -20px;
     border-bottom: 2px solid #00308F;
 
     ul {
-        width: 100%;
         padding-top: 10px;
 
-        .logo{
+        .logo {
             float: left;
 
-            a{
+            a {
                 font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
             }
         }
@@ -24,6 +26,7 @@
             position: relative;
             padding: 0 5px;
             margin-right: 10px;
+
             a {
                 display: block;
                 line-height: 45px;
@@ -34,7 +37,7 @@
             }
         }
 
-        li:hover{
+        li:hover {
             background-color: #00308F;
         }
     }
