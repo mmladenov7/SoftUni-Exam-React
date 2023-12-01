@@ -12,7 +12,7 @@ export default function PostDetails() {
     const [post, setPost] = useState({})
     const [likes, setLikes] = useState(0)
     const [comments, setComments] = useState([])
-    const { data, changeHandler } = useForm({
+    const { data, changeHandler, cleanData } = useForm({
         text: ""
     })
 
@@ -36,7 +36,6 @@ export default function PostDetails() {
     }, [])
 
     useEffect(() => {
-        console.log(comments)
     }, [comments])
 
     async function like() {
@@ -52,6 +51,7 @@ export default function PostDetails() {
         const comment = await response.json()
 
         setComments(state => [...state, comment])
+        cleanData()
     }
 
     return (

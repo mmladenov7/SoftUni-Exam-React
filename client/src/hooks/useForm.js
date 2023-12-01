@@ -11,8 +11,13 @@ export function useForm(initialValue) {
         }))
     }
 
+    function cleanData(){
+        setData(initialValue)
+    }
+
     return {
         data,
-        changeHandler
+        changeHandler,
+        cleanData
     }
 }
