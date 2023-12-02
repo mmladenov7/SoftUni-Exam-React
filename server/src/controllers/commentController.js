@@ -1,11 +1,8 @@
-module.exports = (router, commentManager, jwt, SECRET) => {
-    router.post('/:postId', async (req, res) => {
+module.exports = (router, commentManager, authMiddlewear) => {
+    router.post('/:postId', authMiddlewear, async (req, res) => {
         const post = req.params.postId
         const { text } = req.body
-
-        const token = req.header('Authorization')
-        const ownerToken = await jwt.verify(token, SECRET)
-        const user = ownerToken._id
+        const user = req.user
 
         try {
             const comment = await commentManager.comment(post, user, text)

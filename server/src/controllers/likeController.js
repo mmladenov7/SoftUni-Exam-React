@@ -1,18 +1,13 @@
-module.exports = (router, likeManager, jwt, SECRET) => {
-    router.post('/:postId', async (req, res) => {
+module.exports = (router, likeManager, authMiddlewear) => {
+    router.post('/:postId', authMiddlewear, async (req, res) => {
         const post = req.params.postId
-
-        const token = req.header('Authorization')
-        const ownerToken = await jwt.verify(token, SECRET)
-        const user = ownerToken._id
+        const user = req.user
 
         try {
             const like = await likeManager.like(post, user)
 
             res.status(200).send(like)
         } catch (err) {
-            console.log(err)
-            console.log(err.message)
             res.status(404).send(err.message)
         }
     })
