@@ -24,11 +24,11 @@ export default function AllPosts() {
                         model={x.model}
                         productionYear={x.productionYear}
                         description={x.description}
-                    //owner
                     />
                 ))}
             </div>
             <div className={styles.addition}>
+                <h1>CARSTAGRAM</h1>
             </div>
         </>
     )

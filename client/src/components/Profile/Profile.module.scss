@@ -30,6 +30,8 @@ $border-shadow-var: 5px 5px 5px 5px $dark-blue-var;
     img {
         height: 100%;
         width: 100%;
+        object-position: center;
+        object-fit: cover;
     }
 
     img:hover{

@@ -11,6 +11,8 @@ $border-shadow-var: 5px 5px 5px 5px $dark-blue-var;
     display: flex;
     border: $border-var;
     box-shadow: $border-shadow-var;
+    border-radius: 5%;
+    overflow: hidden;
 
     button {
         margin-top: 20px;
@@ -26,7 +28,13 @@ h2 {
 }
 
 .create{
-    margin: 150px auto;
+    width: 100%;
+    height: 90%;
+    top:57.4px;
+    position: absolute;
+    background-image: url(https://wallpapers.com/images/hd/car-4k-mclaren-retro-wave-yduvczxgolxxu1nk.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .edit {
