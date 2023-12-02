@@ -37,6 +37,14 @@ module.exports = (router, postManager, jwt, SECRET) => {
 
     })
 
+    router.post("/:_id/edit", async (req, res) => {
+        const _id = req.params._id
+        const data = req.body
+
+        console.log(_id, data)
+        res.status(200).send('OK')
+    })
+
     router.get("/user/:ownerId", async (req, res) => {
         const ownerId = req.params.ownerId
 

@@ -10,6 +10,7 @@ import CreatePost from "./components/Cars/CreatePost"
 import AllPosts from "./components/Cars/Posts/All_Posts/AllPosts"
 import PostDetails from "./components/Cars/Posts/Post_Details/PostDetails"
 import Profile from "./components/Profile/Profile"
+import EditPost from "./components/Cars/Posts/EditPost/EditPost"
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path="/posts" element={<AllPosts />} />
           <Route path="/posts/:_id" element={<PostDetails />} />
           <Route path="/posts/create" element={<CreatePost />} />
+          <Route path="/posts/:_id/edit" element={<EditPost />} />
         </Routes>
         <Footer />
       </AuthProvider>

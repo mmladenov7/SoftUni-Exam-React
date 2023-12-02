@@ -1,6 +1,6 @@
 import styles from './PostDetails.module.scss'
 
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useForm } from '../../../../hooks/useForm'
 
@@ -15,6 +15,7 @@ export default function PostDetails() {
     const { data, changeHandler, cleanData } = useForm({
         text: ""
     })
+    const navigate = useNavigate()
 
 
     useEffect(() => {
@@ -38,6 +39,7 @@ export default function PostDetails() {
     useEffect(() => {
     }, [comments])
 
+
     async function like() {
         const request = await apiFetch.post(`likes/${_id}`)
         const response = await request.json()
@@ -54,6 +56,7 @@ export default function PostDetails() {
         cleanData()
     }
 
+
     return (
         <div className={styles.details}>
             <img src={post.imageUrl}></img>
@@ -68,8 +71,8 @@ export default function PostDetails() {
                         <p>{post.model} {post.productionYear}</p>
                     </div>
                     <div className={styles.detailsButtons}>
-                        <button className={styles.editBtn}>Edit</button>
-                        <button className={styles.deleteBtn}>Delete</button>
+                        <button onClick={() => navigate(`/posts/${_id}/edit`, { state: post })}>Edit</button>
+                        <button >Delete</button>
                     </div>
                 </div>
                 <div className={styles.detailsDescription}>
