@@ -1,11 +1,12 @@
 import styles from './PostDetails.module.scss'
 
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useForm } from '../../../../hooks/useForm'
 
 import apiFetch from '../../../../api'
 import Comments from './Comments'
+import AuthContext from '../../../../contexts/AuthContext'
 
 export default function PostDetails() {
     const { _id } = useParams()
@@ -15,6 +16,7 @@ export default function PostDetails() {
     const { data, changeHandler, cleanData } = useForm({
         text: ""
     })
+    const { user } = useContext(AuthContext)
     const navigate = useNavigate()
 
 
@@ -70,10 +72,12 @@ export default function PostDetails() {
                         <h3>{post.brand}</h3>
                         <p>{post.model} {post.productionYear}</p>
                     </div>
-                    <div className={styles.detailsButtons}>
-                        <button onClick={() => navigate(`/posts/${_id}/edit`, { state: post })}>Edit</button>
-                        <button >Delete</button>
-                    </div>
+                    {user._id == post.owner?._id &&
+                        <div className={styles.detailsButtons}>
+                            <button onClick={() => navigate(`/posts/${_id}/edit`, { state: post })}>Edit</button>
+                            <button >Delete</button>
+                        </div>}
+
                 </div>
                 <div className={styles.detailsDescription}>
                     <p>{post.description}</p>
