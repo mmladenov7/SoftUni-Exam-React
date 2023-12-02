@@ -32,11 +32,10 @@ export default function CreatePost() {
 
     return (
         <section>
-            <div>
-                <h2>Create Post</h2>
+            <div className={styles.create}>
                 <div className={styles.post}>
                     <form onSubmit={(e) => onSubmitHandler(e)} >
-                        <h2>Carstagram</h2>
+                        <h2>Create Post</h2>
                         <input type="text" name="imageUrl" id="imageUrl" placeholder="Image URL" value={post.imageUrl} onChange={changeHandler} />
                         <input type="text" name="brand" id="brand" placeholder="Brand" value={post.brand} onChange={changeHandler} />
                         <input type="text" name="model" id="model" placeholder="Model" value={post.model} onChange={changeHandler} />

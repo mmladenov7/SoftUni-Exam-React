@@ -1,10 +1,11 @@
 import styles from '../../post.module.scss'
 import { useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useForm } from '../../../../hooks/useForm'
 import apiFetch from '../../../../api'
 
 export default function EditPost() {
+    const navigate = useNavigate()
     const location = useLocation()
     const fullPost = location.state
     const updatePost = { imageUrl: fullPost.imageUrl, brand: fullPost.brand, model: fullPost.model, productionYear: fullPost.productionYear, description: fullPost.description }
@@ -19,27 +20,19 @@ export default function EditPost() {
 
         const response = await apiFetch.post(`posts/${fullPost._id}/edit`, newPost)
 
+        if (response.status == 200) {
+            navigate(`/posts/${fullPost._id}`)
+        }
 
-        // if (response.status == 200) {
-        //     navigate("/posts")
-        // }
-
-        console.log(newPost)
     }
 
-    useEffect(() => {
-        console.log(updatePost)
-        console.log(data)
-
-    }, [])
-
     return (
-        <section>
+        <section className={styles.edit}>
+            <img src={fullPost.imageUrl}></img>
             <div>
-                <h2>Create Post</h2>
                 <div className={styles.post}>
                     <form onSubmit={(e) => onSubmitHandler(e)} >
-                        <h2>Carstagram</h2>
+                        <h2>Edit Post</h2>
                         <input type="text" name="imageUrl" id="imageUrl" placeholder="Image URL" value={data.imageUrl} onChange={changeHandler} />
                         <input type="text" name="brand" id="brand" placeholder="Brand" value={data.brand} onChange={changeHandler} />
                         <input type="text" name="model" id="model" placeholder="Model" value={data.model} onChange={changeHandler} />

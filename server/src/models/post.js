@@ -24,6 +24,10 @@ module.exports = (mongoose) => {
             type: String,
             required: true
         },
+        updatedAt: {
+            type: String,
+            required: true
+        },
         owner: {
             type: mongoose.Types.ObjectId,
             ref: "User"

@@ -34,12 +34,17 @@ module.exports = (router, postManager, authMiddlewear) => {
 
     })
 
-    router.post("/:_id/edit", async (req, res) => {
+    router.post("/:_id/edit", authMiddlewear, async (req, res) => {
         const _id = req.params._id
         const data = req.body
-
-        console.log(_id, data)
-        res.status(200).send('OK')
+        const userId = req.user
+        
+        try{
+            const post = await postManager.edit(userId, _id, data)
+            res.status(200).send(post)
+        } catch(err){
+            res.status(404).send(err.message)
+        }
     })
 
     router.get("/user/:ownerId", async (req, res) => {
