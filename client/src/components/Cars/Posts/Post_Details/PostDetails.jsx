@@ -67,6 +67,10 @@ export default function PostDetails() {
                         <h3>{post.brand}</h3>
                         <p>{post.model} {post.productionYear}</p>
                     </div>
+                    <div className={styles.detailsButtons}>
+                        <button className={styles.editBtn}>Edit</button>
+                        <button className={styles.deleteBtn}>Delete</button>
+                    </div>
                 </div>
                 <div className={styles.detailsDescription}>
                     <p>{post.description}</p>

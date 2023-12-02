@@ -18,13 +18,13 @@ export default function Profile() {
         apiFetch.get(`users/${_id}`)
             .then(data => data.json())
             .then(data => setCurrentUser(data))
-    }, [])
+    }, [_id])
 
     useEffect(() => {
         apiFetch.get(`posts/user/${_id}`)
             .then(data => data.json())
             .then(data => setPosts(data))
-    }, [])
+    }, [_id])
 
     useEffect(() => {
     }, [posts, currentUser])

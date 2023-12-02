@@ -59,6 +59,7 @@ $border-shadow-var: 5px 5px 5px 5px $dark-blue-var;
 
     .detailsPostInfo {
         color: $gray-var;
+        width: 35%;
         margin: 0;
         padding: 0;
         margin-left: 35px;
@@ -78,6 +79,27 @@ $border-shadow-var: 5px 5px 5px 5px $dark-blue-var;
         }
     }
 
+    .detailsButtons {
+        width: 25%;
+        height: 50%;
+        padding-top: 10px;
+
+
+        button {
+            width: 90%;
+            height: 40%;
+            margin-bottom: 5px;
+            background-color: $light-blue-var;
+            color: $gray-var;
+            border: none;
+            border-radius: 10%;
+        }
+
+        button:hover {
+            cursor: pointer;
+            zoom: 120%;
+        }
+    }
 }
 
 .detailsDescription {
