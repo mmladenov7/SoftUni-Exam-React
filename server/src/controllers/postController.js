@@ -1,4 +1,4 @@
-module.exports = (router, postManager, jwt, SECRET) => {
+module.exports = (router, postManager, authMiddlewear) => {
     router.get("/", async (req, res) => {
         const posts = await postManager.getAll()
 
@@ -20,12 +20,9 @@ module.exports = (router, postManager, jwt, SECRET) => {
         }
     })
 
-    router.post("/create", async (req, res) => {
+    router.post("/create", authMiddlewear, async (req, res) => {
         const { imageUrl, brand, model, productionYear, description, createdAt } = req.body
-
-        const token = req.header('Authorization')
-        const ownerToken = await jwt.verify(token, SECRET)
-        const owner = ownerToken._id
+        const owner = req.user
 
         try {
             const post = await postManager.create(imageUrl, brand, model, productionYear, description, createdAt, owner)

@@ -11,8 +11,12 @@ const SECRET = 'SECRET'
 const config = require('./configs/mainConfig')
 config(app, express, mongoose)
 
+//MIddlewears
+const authMiddlewearImport = require('./middlewears/authMiddlewear')
+const authMiddlewear = authMiddlewearImport(jwt, SECRET)
+
 //Routes
 router = require('./router/mainRouter')
-require('./router/mainRouter')(app, express, mongoose, bcrypt, jwt, SECRET)
+require('./router/mainRouter')(app, express, mongoose, bcrypt, jwt, SECRET, authMiddlewear)
 
 app.listen(PORT, () => console.log(`app running on port ${PORT}`))

@@ -1,4 +1,4 @@
-module.exports = (app, express, mongoose, bcrypt, jwt, SECRET) => {
+module.exports = (app, express, mongoose, bcrypt, jwt, SECRET, authMiddlewear) => {
     const User = require('../models/user')(mongoose)
     const Post = require('../models/post')(mongoose)
     const Like = require('../models/like')(mongoose)
@@ -10,7 +10,7 @@ module.exports = (app, express, mongoose, bcrypt, jwt, SECRET) => {
     const commentManager = require('../managers/commentManager')(Comment)
 
     const userController = require('../controllers/userController')(express.Router(), userManager, jwt, SECRET)
-    const postController = require('../controllers/postController')(express.Router(), postManager, jwt, SECRET)
+    const postController = require('../controllers/postController')(express.Router(), postManager, authMiddlewear)
     const likeController = require('../controllers/likeController')(express.Router(), likeManager, jwt, SECRET)
     const commentController = require('../controllers/commentController')(express.Router(), commentManager, jwt, SECRET)
 
