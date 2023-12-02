@@ -30,6 +30,16 @@ module.exports = (Post) => {
 
             const updatedPost = Post.findByIdAndUpdate(_id, data)
             return updatedPost
+        },
+        delete: async function (userId, _id) {
+            const isOwner = compareOwners(userId, _id)
+
+            if (!isOwner) {
+                throw new Error("Unauthorized")
+            }
+
+            await Post.findByIdAndDelete(_id)
+            return {}
         }
     }
 }

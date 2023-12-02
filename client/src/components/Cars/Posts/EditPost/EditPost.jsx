@@ -18,7 +18,7 @@ export default function EditPost() {
         const updatedAt = new Date().toLocaleDateString("en-gb")
         const newPost = { ...data, updatedAt }
 
-        const response = await apiFetch.post(`posts/${fullPost._id}/edit`, newPost)
+        const response = await apiFetch.put(`posts/${fullPost._id}`, newPost)
 
         if (response.status == 200) {
             navigate(`/posts/${fullPost._id}`)

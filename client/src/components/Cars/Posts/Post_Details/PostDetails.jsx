@@ -4,9 +4,12 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useContext, useEffect, useState } from 'react'
 import { useForm } from '../../../../hooks/useForm'
 
-import apiFetch from '../../../../api'
-import Comments from './Comments'
 import AuthContext from '../../../../contexts/AuthContext'
+import apiFetch from '../../../../api'
+
+import Comments from './Comments/Comments'
+import DeleteModal from './DeleteModal'
+
 
 export default function PostDetails() {
     const { _id } = useParams()
@@ -17,8 +20,8 @@ export default function PostDetails() {
         text: ""
     })
     const { user } = useContext(AuthContext)
+    const [deleteModal, setDeleteModal] = useState(false)
     const navigate = useNavigate()
-
 
     useEffect(() => {
         apiFetch.get(`posts/${_id}`)
@@ -58,27 +61,39 @@ export default function PostDetails() {
         cleanData()
     }
 
+    function hideDeleteModal() {
+        setDeleteModal(false)
+    }
+
+    async function deletePostHandler() {
+        await apiFetch.del(`posts/${_id}`)
+        navigate('/posts')
+    }
 
     return (
         <div className={styles.details}>
             <img src={post.imageUrl}></img>
             <div className={styles.detailsInfo}>
-                <div className={styles.detailsUser}>
-                    <div className={styles.imageContainer}>
-                        <Link to={`/users/${post.owner?._id}`}><img src={post.owner?.imageUrl}></img></Link>
-                    </div>
-                    <div className={styles.detailsPostInfo}>
-                        <h2>{post.owner?.username}</h2>
-                        <h3>{post.brand}</h3>
-                        <p>{post.model} {post.productionYear}</p>
-                    </div>
-                    {user._id == post.owner?._id &&
-                        <div className={styles.detailsButtons}>
-                            <button onClick={() => navigate(`/posts/${_id}/edit`, { state: post })}>Edit</button>
-                            <button >Delete</button>
-                        </div>}
+                {deleteModal ? <DeleteModal
+                    onClose={hideDeleteModal}
+                    onDelete={deletePostHandler}
+                /> :
+                    <div className={styles.detailsUser}>
+                        <div className={styles.imageContainer}>
+                            <Link to={`/users/${post.owner?._id}`}><img src={post.owner?.imageUrl}></img></Link>
+                        </div>
+                        <div className={styles.detailsPostInfo}>
+                            <h2>{post.owner?.username}</h2>
+                            <h3>{post.brand}</h3>
+                            <p>{post.model} {post.productionYear}</p>
+                        </div>
+                        {user._id == post.owner?._id &&
+                            <div className={styles.detailsButtons}>
+                                <button onClick={() => navigate(`/posts/${_id}/edit`, { state: post })}>Edit</button>
+                                <button onClick={() => setDeleteModal(true)}>Delete</button>
+                            </div>}
 
-                </div>
+                    </div>}
                 <div className={styles.detailsDescription}>
                     <p>{post.description}</p>
                 </div>

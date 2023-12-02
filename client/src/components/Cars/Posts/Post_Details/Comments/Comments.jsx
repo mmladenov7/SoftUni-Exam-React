@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import styles from './PostDetails.module.scss'
+import styles from '../PostDetails.module.scss'
 
 export default function Comments({
     imageUrl,
