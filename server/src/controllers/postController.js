@@ -11,9 +11,9 @@ module.exports = (router, postManager, authMiddlewear) => {
 
     router.post("/create", authMiddlewear, async (req, res) => {
         const { imageUrl, brand, model, productionYear, description, createdAt } = req.body
-        const owner = req.user
 
         try {
+            const owner = req.user
             const post = await postManager.create(imageUrl, brand, model, productionYear, description, createdAt, owner)
 
             res.status(200).send(post)
@@ -44,9 +44,9 @@ module.exports = (router, postManager, authMiddlewear) => {
     router.put("/:_id", authMiddlewear, async (req, res) => {
         const _id = req.params._id
         const data = req.body
-        const userId = req.user
 
         try {
+            const userId = req.user
             const post = await postManager.edit(userId, _id, data)
             res.status(200).send(post)
         } catch (err) {
@@ -56,9 +56,9 @@ module.exports = (router, postManager, authMiddlewear) => {
 
     router.delete("/:_id", authMiddlewear, async (req, res) => {
         const _id = req.params._id
-        const userId = req.user
 
         try {
+            const userId = req.user
             const post = await postManager.delete(userId, _id)
             res.status(200).send(post)
         } catch (err) {

@@ -5,6 +5,7 @@ module.exports = (mongoose) => {
             ref: "Post"
         },
         user: {
+            required: true,
             type: mongoose.Types.ObjectId,
             ref: "User"
         }

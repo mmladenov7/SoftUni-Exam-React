@@ -15,6 +15,7 @@ export default function PostDetails() {
     const { _id } = useParams()
     const [post, setPost] = useState({})
     const [likes, setLikes] = useState(0)
+    const [liked, setLiked] = useState(false)
     const [comments, setComments] = useState([])
     const { data, changeHandler, cleanData } = useForm({
         text: ""
@@ -32,7 +33,10 @@ export default function PostDetails() {
     useEffect(() => {
         apiFetch.get(`likes/${_id}`)
             .then(res => res.json())
-            .then(res => setLikes(Number(res)))
+            .then(res => {
+                setLiked(res == '1' ? true : false)
+                setLikes(Number(res))
+            })
     }, [likes])
 
     useEffect(() => {
@@ -42,7 +46,6 @@ export default function PostDetails() {
     }, [])
 
     useEffect(() => {
-        console.log('update')
     }, [comments])
 
 
@@ -50,6 +53,7 @@ export default function PostDetails() {
         const request = await apiFetch.post(`likes/${_id}`)
         const response = await request.json()
         setLikes(state => state + Number(response))
+        setLiked(state => !state)
     }
 
     async function commentSubmitHandler(e) {
@@ -113,12 +117,19 @@ export default function PostDetails() {
                 <div className={styles.detailsInteract}>
                     <div className={styles.detailsLike}>
                         <p>{likes} Likes</p>
-                        <button onClick={like}>Like</button>
                     </div>
-                    <form onSubmit={commentSubmitHandler}>
-                        <textarea type='text' name='text' id='comment' placeholder='Add comment...' value={data.text} onChange={changeHandler} />
-                        {data.text.length > 0 && <button type='submit'>Comment</button>}
-                    </form>
+                    {Object.keys(user).length > 0 ?
+                        <div className={styles.likeBtn}>
+                            <button onClick={like}>{liked ? "Like" : "Dislike"}</button>
+                            <form onSubmit={commentSubmitHandler}>
+                                <textarea type='text' name='text' id='comment' placeholder='Add comment...' value={data.text} onChange={changeHandler} />
+                                {data.text.length > 0 && <button type='submit'>Comment</button>}
+                            </form>
+                        </div>
+                        :
+                        <div className={styles.noUser}>
+                            <h2><Link to="/users/login">Log in</Link> to interact</h2>
+                        </div>}
                 </div>
             </div>
         </div>

@@ -1,9 +1,9 @@
 module.exports = (router, likeManager, postManager, authMiddlewear) => {
     router.post('/:postId', authMiddlewear, async (req, res) => {
         const post = req.params.postId
-        const user = req.user
 
         try {
+            const user = req.user
             const [response, like] = await likeManager.like(post, user)
             postManager.like(post, like._id, response)
 
