@@ -15,7 +15,7 @@ module.exports = (Like) => {
         },
         getLikesForPost: async (post) => {
             const likes = await Like.find({ post })
-            return `${likes.length}`
+            return likes
         },
         getLikesByUser: async (user) => {
             const posts = await Like.find({ user }).populate('post', 'imageUrl').select('post')

@@ -34,8 +34,9 @@ export default function PostDetails() {
         apiFetch.get(`likes/${_id}`)
             .then(res => res.json())
             .then(res => {
-                setLiked(res == '1' ? true : false)
-                setLikes(Number(res))
+                let hasLiked = res.find(x => x.user == user._id)
+                setLiked(hasLiked ? true : false)
+                setLikes(res.length)
             })
     }, [likes])
 
@@ -120,7 +121,7 @@ export default function PostDetails() {
                     </div>
                     {Object.keys(user).length > 0 ?
                         <div className={styles.likeBtn}>
-                            <button onClick={like}>{liked ? "Like" : "Dislike"}</button>
+                            <button onClick={like}>{liked ? "Dislike" : "Like"}</button>
                             <form onSubmit={commentSubmitHandler}>
                                 <textarea type='text' name='text' id='comment' placeholder='Add comment...' value={data.text} onChange={changeHandler} />
                                 {data.text.length > 0 && <button type='submit'>Comment</button>}
