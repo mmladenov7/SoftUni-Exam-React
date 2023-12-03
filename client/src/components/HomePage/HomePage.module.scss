@@ -39,7 +39,7 @@ $border-shadow-var: 5px 5px 5px 5px $dark-blue-var;
     display: flex;
 
     h2 {
-        padding-left: 110px;
+        padding-left: 80px;
         text-align: center;
         color: $light-blue-var;
         text-shadow: $gray-var 1px 0 7px;
@@ -48,17 +48,16 @@ $border-shadow-var: 5px 5px 5px 5px $dark-blue-var;
 
 .mostLikedPost {
     height: 100%;
-    width: 30%;
-
-}
-
-.test {
-    height: 100%;
     width: 33%;
-
+    margin-left: -30px;
 }
 
 .mostCommentedPost {
+    height: 100%;
+    width: 33%;
+}
+
+.mostReacentPost {
     height: 100%;
     width: 30%;
 

@@ -64,11 +64,15 @@ module.exports = (Post) => {
         getMost: async function (prop) {
             let post
             if (prop == 'likes') {
-                post = Post.find().sort({ 'likes': -1 }).limit(1).select('_id imageUrl brand model productionYear description owner')
+                post = await Post.find().sort({ 'likes': -1 }).limit(1).select('_id imageUrl brand model productionYear description owner')
             } else if (prop == 'comments') {
-                post = Post.find().sort({ 'comments': -1 }).limit(1).select('_id imageUrl brand model productionYear description owner')
+                post = await Post.find().sort({ 'comments': -1 }).limit(1).select('_id imageUrl brand model productionYear description owner')
+            } else if (prop == 'reacent') {
+                post = await Post.find().select('_id imageUrl brand model productionYear description owner')
+                post = [post[post.length -1]]
             }
-            return post
+
+            return post[0]
         }
     }
 }

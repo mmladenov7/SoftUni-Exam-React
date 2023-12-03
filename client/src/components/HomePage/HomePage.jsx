@@ -5,16 +5,21 @@ import apiFetch from '../../api'
 
 export default function HomePage() {
     const [likedPost, setLikedPost] = useState({})
-    const [commentPost, setcommentPost] = useState({})
+    const [commentPost, setCommentPost] = useState({})
+    const [reacentPost, setReacentPost] = useState({})
 
     useEffect(() => {
-        apiFetch.get("posts/mostLiked")
+        apiFetch.get("posts/most/likes")
             .then(data => data.json())
             .then(data => setLikedPost(data))
 
-        apiFetch.get("posts/mostCommented")
+        apiFetch.get("posts/most/comments")
             .then(data => data.json())
-            .then(data => setcommentPost(data))
+            .then(data => setCommentPost(data))
+
+        apiFetch.get("posts/most/reacent")
+            .then(data => data.json())
+            .then(data => setReacentPost(data))
     }, [])
 
     return (
@@ -35,9 +40,7 @@ export default function HomePage() {
                         description={likedPost.description}
                     />
                 </div>
-                <div className={styles.test}>
 
-                </div>
                 <div className={styles.mostCommentedPost}>
                     <h2>Most commented post:</h2>
                     <PostItem
@@ -48,6 +51,19 @@ export default function HomePage() {
                         model={commentPost.model}
                         productionYear={commentPost.productionYear}
                         description={commentPost.description}
+                    />
+                </div>
+
+                <div className={styles.mostReacentPost}>
+                    <h2>Most reacent post:</h2>
+                    <PostItem
+                        key={reacentPost._id}
+                        _id={reacentPost._id}
+                        imageUrl={reacentPost.imageUrl}
+                        brand={reacentPost.brand}
+                        model={reacentPost.model}
+                        productionYear={reacentPost.productionYear}
+                        description={reacentPost.description}
                     />
                 </div>
             </div>
