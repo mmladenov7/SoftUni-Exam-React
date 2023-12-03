@@ -1,4 +1,4 @@
-module.exports = (router, commentManager, authMiddlewear) => {
+module.exports = (router, commentManager, postManager, authMiddlewear) => {
     router.post('/:postId', authMiddlewear, async (req, res) => {
         const post = req.params.postId
         const { text } = req.body
@@ -6,6 +6,7 @@ module.exports = (router, commentManager, authMiddlewear) => {
 
         try {
             const comment = await commentManager.comment(post, user, text)
+            postManager.comment(post, comment._id, "1")
 
             res.status(200).send(comment)
         } catch (err) {
@@ -25,6 +26,33 @@ module.exports = (router, commentManager, authMiddlewear) => {
         }
     })
 
+    router.put('/:_id', authMiddlewear, async (req, res) => {
+        const _id = req.params._id
+        const { text } = req.body
+        const user = req.user
+
+        try {
+            const comment = await commentManager.edit(_id, user, text)
+
+            res.status(200).send(comment)
+        } catch (err) {
+            res.status(404).send(err.message)
+        }
+    })
+
+    router.delete('/:_id', authMiddlewear, async (req, res) => {
+        const _id = req.params._id
+        const user = req.user
+
+        try {
+            const comment = await commentManager.delete(_id, user)
+            postManager.comment(comment.post, comment._id, "-1")
+
+            res.status(200).send({})
+        } catch (err) {
+            res.status(404).send(err.message)
+        }
+    })
     return router
 
 }

@@ -42,6 +42,7 @@ export default function PostDetails() {
     }, [])
 
     useEffect(() => {
+        console.log('update')
     }, [comments])
 
 
@@ -51,7 +52,7 @@ export default function PostDetails() {
         setLikes(state => state + Number(response))
     }
 
-    async function submitHandler(e) {
+    async function commentSubmitHandler(e) {
         e.preventDefault()
 
         const response = await apiFetch.post(`comments/${_id}`, data)
@@ -69,6 +70,7 @@ export default function PostDetails() {
         await apiFetch.del(`posts/${_id}`)
         navigate('/posts')
     }
+
 
     return (
         <div className={styles.details}>
@@ -92,7 +94,6 @@ export default function PostDetails() {
                                 <button onClick={() => navigate(`/posts/${_id}/edit`, { state: post })}>Edit</button>
                                 <button onClick={() => setDeleteModal(true)}>Delete</button>
                             </div>}
-
                     </div>}
                 <div className={styles.detailsDescription}>
                     <p>{post.description}</p>
@@ -104,6 +105,9 @@ export default function PostDetails() {
                         username={x.user?.username}
                         userId={x.user?._id}
                         text={x.text}
+                        isOwner={user._id == x.user?._id}
+                        _id={x._id}
+                        edditComment={(c) => setComments(c)}
                     />)}
                 </div>
                 <div className={styles.detailsInteract}>
@@ -111,7 +115,7 @@ export default function PostDetails() {
                         <p>{likes} Likes</p>
                         <button onClick={like}>Like</button>
                     </div>
-                    <form onSubmit={submitHandler}>
+                    <form onSubmit={commentSubmitHandler}>
                         <textarea type='text' name='text' id='comment' placeholder='Add comment...' value={data.text} onChange={changeHandler} />
                         {data.text.length > 0 && <button type='submit'>Comment</button>}
                     </form>

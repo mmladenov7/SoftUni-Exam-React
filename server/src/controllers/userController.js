@@ -40,8 +40,7 @@ module.exports = (router, userManager, jwt, SECRET) => {
     })
 
     router.get("/logout", (req, res) => {
-        //TODO
-        console.log("TODO")
+        res.status(204).send({})
     })
 
     router.get("/:_id", async (req, res) => {

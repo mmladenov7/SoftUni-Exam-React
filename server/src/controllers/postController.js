@@ -23,6 +23,24 @@ module.exports = (router, postManager, authMiddlewear) => {
 
     })
 
+    router.get("/mostLiked", async (req, res) => {
+        try {
+            const post = await postManager.getMost("likes")
+            res.status(200).send(post[0])
+        } catch (err) {
+            res.status(404).send(err)
+        }
+    })
+
+    router.get("/mostCommented", async (req, res) => {
+        try {
+            const post = await postManager.getMost("comments")
+            res.status(200).send(post[0])
+        } catch (err) {
+            res.status(404).send(err)
+        }
+    })
+
     router.put("/:_id", authMiddlewear, async (req, res) => {
         const _id = req.params._id
         const data = req.body

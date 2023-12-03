@@ -5,7 +5,6 @@ export default function usePersistedState(key, initialValue) {
         const persistedState = localStorage.getItem(key)
 
         if (persistedState) {
-            console.log(persistedState)
             return JSON.parse(persistedState)
         }
 
@@ -15,8 +14,12 @@ export default function usePersistedState(key, initialValue) {
     const setPersistedState = (data) => {
         setState(data)
 
-        const stringifiedData = JSON.stringify(data)
-        localStorage.setItem(key, stringifiedData)
+        if (Object.keys(data).length == 0) {
+            localStorage.clear(key)
+        } else {
+            const stringifiedData = JSON.stringify(data)
+            localStorage.setItem(key, stringifiedData)
+        }
     }
 
     return [state, setPersistedState]

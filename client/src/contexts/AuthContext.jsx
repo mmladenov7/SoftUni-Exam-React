@@ -14,7 +14,6 @@ export function AuthProvider({ children }) {
 
     async function authenticateUser(e, data, path) {
         e.preventDefault()
-
         const response = await apiFetch.post(path, data)
         if (!response.ok) {
             console.log("error")
@@ -28,13 +27,14 @@ export function AuthProvider({ children }) {
     }
 
     async function logoutUser() {
-
-        //TODO
-        const response = await apiFetch.get("users/logout", "")
+        const response = await apiFetch.get("users/logout")
+        setUser({})
+        navigate('/')
     }
 
     const values = {
         authenticateUser,
+        logoutUser,
         user,
     }
 

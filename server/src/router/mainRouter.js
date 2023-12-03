@@ -11,8 +11,8 @@ module.exports = (app, express, mongoose, bcrypt, jwt, SECRET, authMiddlewear) =
 
     const userController = require('../controllers/userController')(express.Router(), userManager, jwt, SECRET)
     const postController = require('../controllers/postController')(express.Router(), postManager, authMiddlewear)
-    const likeController = require('../controllers/likeController')(express.Router(), likeManager, authMiddlewear)
-    const commentController = require('../controllers/commentController')(express.Router(), commentManager, authMiddlewear)
+    const likeController = require('../controllers/likeController')(express.Router(), likeManager, postManager, authMiddlewear)
+    const commentController = require('../controllers/commentController')(express.Router(), commentManager, postManager, authMiddlewear)
 
     app.use("/users", userController)
     app.use("/posts", postController)

@@ -40,6 +40,35 @@ module.exports = (Post) => {
 
             await Post.findByIdAndDelete(_id)
             return {}
+        },
+        like: async function (_id, likeId, action) {
+            const post = await Post.findById(_id)
+            if (action == "1") {
+                post.likes.push(likeId)
+            } else {
+                const index = post.likes.indexOf(likeId)
+                post.likes.splice(index, 1)
+            }
+            post.save()
+        },
+        comment: async function (_id, commentId, action) {
+            const post = await Post.findById(_id)
+            if (action == "1") {
+                post.comments.push(commentId)
+            } else {
+                const index = post.comments.indexOf(commentId)
+                post.comments.splice(index, 1)
+            }
+            post.save()
+        },
+        getMost: async function (prop) {
+            let post
+            if (prop == 'likes') {
+                post = Post.find().sort({ 'likes': -1 }).limit(1).select('_id imageUrl brand model productionYear description owner')
+            } else if (prop == 'comments') {
+                post = Post.find().sort({ 'comments': -1 }).limit(1).select('_id imageUrl brand model productionYear description owner')
+            }
+            return post
         }
     }
 }

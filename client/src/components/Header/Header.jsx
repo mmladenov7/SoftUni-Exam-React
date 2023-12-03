@@ -4,18 +4,18 @@ import { Link } from 'react-router-dom'
 import AuthContext from '../../contexts/AuthContext'
 
 export default function Header() {
-    const { user } = useContext(AuthContext)
+    const { user, logoutUser } = useContext(AuthContext)
     const isLogged = Object.keys(user).length > 0
     const profile = `/users/${user._id}`
 
     return (
         <nav className={styles.header}>
             <ul>
-                <li><Link to="/posts">All Posts</Link></li>
                 {isLogged ?
                     <>
-                        <li><Link to="/posts/create">Create Post</Link></li>
+                        <li onClick={logoutUser}><Link to="/users/logout">Logout</Link></li>
                         <li><Link to={profile}>Profile</Link></li>
+                        <li><Link to="/posts/create">Create Post</Link></li>
                     </>
                     :
                     <>
@@ -24,6 +24,7 @@ export default function Header() {
                     </>
                 }
                 <li className={styles.logo}><Link to="/">Carstagram</Link></li>
+                <li><Link to="/posts">All Posts</Link></li>
             </ul>
         </nav>
     )
