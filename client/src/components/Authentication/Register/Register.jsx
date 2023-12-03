@@ -5,7 +5,7 @@ import { useForm } from '../../../hooks/useForm'
 import AuthContext from '../../../contexts/AuthContext'
 
 const startUser = { username: "", email: "", password: "", repeatPassword: "" }
-const path = 'users/register'
+const path = 'register'
 
 export default function Register() {
     const { data, changeHandler } = useForm(startUser)

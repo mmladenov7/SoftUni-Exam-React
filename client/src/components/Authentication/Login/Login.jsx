@@ -5,7 +5,7 @@ import { useContext } from 'react'
 import AuthContext from '../../../contexts/AuthContext'
 
 const startUser = { email: "", password: "" }
-const path = 'users/login'
+const path = 'login'
 
 export default function Login() {
     const { data, changeHandler } = useForm(startUser)
