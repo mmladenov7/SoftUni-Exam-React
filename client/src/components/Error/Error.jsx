@@ -1,13 +1,19 @@
 import { useContext, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import styles from './Error.module.scss'
 import ErrorContext from '../../contexts/ErrorContext'
 
 export default function Error() {
     const { error, hideError } = useContext(ErrorContext)
+    const location = useLocation()
 
-    useEffect(() =>{
+    useEffect(() => {
         setTimeout(() => hideError(), 5000)
-    }, error)
+    }, [error])
+
+    useEffect(() => {
+        hideError()
+    }, [location])
 
     return (
         <div>
