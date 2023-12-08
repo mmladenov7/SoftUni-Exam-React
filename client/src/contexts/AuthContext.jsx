@@ -65,11 +65,9 @@ export function AuthProvider({ children }) {
             }
 
             const response = await apiFetch.post(`users/${path}`, data)
+            
             if (!response.ok) {
-
-                //TODO
-                
-                console.log("error")
+                errorThrower(await response.text())
             } else {
                 const result = await response.json()
                 setUser(result)

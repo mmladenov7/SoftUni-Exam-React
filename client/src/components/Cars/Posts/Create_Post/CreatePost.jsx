@@ -33,6 +33,8 @@ export default function CreatePost() {
 
             if (response.status == 200) {
                 navigate("/posts")
+            } else {
+                errorThrower(await response.text())
             }
         } catch (err) {
             showError(err.message)

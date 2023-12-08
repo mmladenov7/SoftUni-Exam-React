@@ -1,10 +1,11 @@
 import styles from '../../post.module.scss'
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useForm } from '../../../../hooks/useForm'
 import apiFetch from '../../../../api'
 import { postValidator } from '../../postUtils'
 import ErrorContext from '../../../../contexts/ErrorContext'
+import { errorThrower } from '../../../../utils/utils'
 
 export default function EditPost() {
     const navigate = useNavigate()
@@ -27,7 +28,10 @@ export default function EditPost() {
 
             if (response.status == 200) {
                 navigate(`/posts/${fullPost._id}`)
+            } else {
+                errorThrower(await response.text())
             }
+
         } catch (err) {
             showError(err.message)
         }
