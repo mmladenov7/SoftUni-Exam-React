@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import apiFetch from "../api";
 import usePersistedState from "../hooks/usePersistedState";
@@ -13,9 +13,26 @@ export default AuthContext
 export function AuthProvider({ children }) {
     const [user, setUser] = usePersistedState("user", {})
     const navigate = useNavigate()
+    const location = useLocation()
     const { showError, hideError } = useContext(ErrorContext)
 
+    //Route Guard
+    useEffect(() => {
+        const currentPath = location.pathname
 
+        if (Object.keys(user).length == 0) {
+            if (currentPath == '/posts/create') {
+                navigate('/users/login')
+            }
+        } else {
+            if(currentPath == '/users/login' || currentPath == '/users/register'){
+                navigate('/')
+            }
+        }
+
+    }, [location])
+
+    //Validation
     function validateLogin(data) {
         dataChecker(data)
 
@@ -65,7 +82,7 @@ export function AuthProvider({ children }) {
             }
 
             const response = await apiFetch.post(`users/${path}`, data)
-            
+
             if (!response.ok) {
                 errorThrower(await response.text())
             } else {
