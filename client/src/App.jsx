@@ -7,13 +7,13 @@ import Header from "./components/Header/Header"
 import Register from "./components/Authentication/Register/Register"
 import Login from "./components/Authentication/Login/Login"
 import Footer from "./components/Footer/Footer"
-import CreatePost from "./components/Cars/CreatePost"
 import AllPosts from "./components/Cars/Posts/All_Posts/AllPosts"
 import PostDetails from "./components/Cars/Posts/Post_Details/PostDetails"
 import Profile from "./components/Profile/Profile"
 import EditPost from "./components/Cars/Posts/EditPost/EditPost"
 import HomePage from "./components/HomePage/HomePage"
 import Error from "./components/Error/Error"
+import CreatePost from "./components/Cars/Posts/Create_Post/CreatePost"
 
 
 function App() {
