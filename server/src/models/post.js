@@ -1,4 +1,4 @@
-module.exports = (mongoose) => {
+module.exports = (mongoose, Like, Comment) => {
     const schema = new mongoose.Schema({
         imageUrl: {
             type: String,
@@ -40,6 +40,13 @@ module.exports = (mongoose) => {
             type: mongoose.Types.ObjectId,
             ref: "Comment"
         }]
+
+    })
+
+    schema.pre('findOneAndDelete', async function () {
+        const currentPost = this.getQuery()._id
+        await Like.deleteMany({ post: currentPost })
+        await Comment.deleteMany({ post: currentPost })
 
     })
 

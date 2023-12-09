@@ -1,8 +1,8 @@
 module.exports = (app, express, mongoose, bcrypt, jwt, SECRET, authMiddlewear) => {
     const User = require('../models/user')(mongoose)
-    const Post = require('../models/post')(mongoose)
     const Like = require('../models/like')(mongoose)
     const Comment = require('../models/comment')(mongoose)
+    const Post = require('../models/post')(mongoose, Like, Comment)
 
     const userManager = require('../managers/userManager')(User, bcrypt)
     const postManager = require('../managers/postManager')(Post)

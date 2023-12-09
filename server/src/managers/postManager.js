@@ -1,7 +1,7 @@
 module.exports = (Post) => {
     async function compareOwners(userId, postId) {
         const owner = await Post.findById(postId).select('owner').lean()
-        const ownerId = owner.owner
+        const ownerId = owner?.owner
         return userId == ownerId
     }
 
