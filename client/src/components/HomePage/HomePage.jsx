@@ -27,46 +27,48 @@ export default function HomePage() {
             <div className={styles.homeLogo}>
                 <h1>Carstagram</h1>
             </div>
-            <div className={styles.homeDiv}>
-                <div className={styles.mostLikedPost}>
-                    <h2>Most liked post:</h2>
-                    <PostItem
-                        key={likedPost._id}
-                        _id={likedPost._id}
-                        imageUrl={likedPost.imageUrl}
-                        brand={likedPost.brand}
-                        model={likedPost.model}
-                        productionYear={likedPost.productionYear}
-                        description={likedPost.description}
-                    />
-                </div>
+            {Object.keys(reacentPost).length > 0 && <>
+                <div className={styles.homeDiv}>
+                    <div className={styles.mostLikedPost}>
+                        <h2>Most liked post:</h2>
+                        <PostItem
+                            key={likedPost._id}
+                            _id={likedPost._id}
+                            imageUrl={likedPost.imageUrl}
+                            brand={likedPost.brand}
+                            model={likedPost.model}
+                            productionYear={likedPost.productionYear}
+                            description={likedPost.description}
+                        />
+                    </div>
 
-                <div className={styles.mostCommentedPost}>
-                    <h2>Most commented post:</h2>
-                    <PostItem
-                        key={commentPost._id}
-                        _id={commentPost._id}
-                        imageUrl={commentPost.imageUrl}
-                        brand={commentPost.brand}
-                        model={commentPost.model}
-                        productionYear={commentPost.productionYear}
-                        description={commentPost.description}
-                    />
-                </div>
+                    <div className={styles.mostCommentedPost}>
+                        <h2>Most commented post:</h2>
+                        <PostItem
+                            key={commentPost._id}
+                            _id={commentPost._id}
+                            imageUrl={commentPost.imageUrl}
+                            brand={commentPost.brand}
+                            model={commentPost.model}
+                            productionYear={commentPost.productionYear}
+                            description={commentPost.description}
+                        />
+                    </div>
 
-                <div className={styles.mostReacentPost}>
-                    <h2>Most reacent post:</h2>
-                    <PostItem
-                        key={reacentPost._id}
-                        _id={reacentPost._id}
-                        imageUrl={reacentPost.imageUrl}
-                        brand={reacentPost.brand}
-                        model={reacentPost.model}
-                        productionYear={reacentPost.productionYear}
-                        description={reacentPost.description}
-                    />
+                    <div className={styles.mostReacentPost}>
+                        <h2>Most reacent post:</h2>
+                        <PostItem
+                            key={reacentPost._id}
+                            _id={reacentPost._id}
+                            imageUrl={reacentPost.imageUrl}
+                            brand={reacentPost.brand}
+                            model={reacentPost.model}
+                            productionYear={reacentPost.productionYear}
+                            description={reacentPost.description}
+                        />
+                    </div>
                 </div>
-            </div>
+            </>}
         </div>
     )
 }
