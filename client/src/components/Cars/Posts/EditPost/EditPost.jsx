@@ -1,5 +1,5 @@
 import styles from '../../post.module.scss'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useForm } from '../../../../hooks/useForm'
 import apiFetch from '../../../../api'
@@ -10,11 +10,10 @@ import { errorThrower } from '../../../../utils/utils'
 export default function EditPost() {
     const navigate = useNavigate()
     const location = useLocation()
-    const fullPost = location.state
+    const fullPost = location.state ? location.state : {}
     const { showError } = useContext(ErrorContext)
     const updatePost = { imageUrl: fullPost.imageUrl, brand: fullPost.brand, model: fullPost.model, productionYear: fullPost.productionYear, description: fullPost.description }
     const { data, changeHandler } = useForm(updatePost)
-
 
     async function onSubmitHandler(e) {
         e.preventDefault()

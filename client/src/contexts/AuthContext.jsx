@@ -21,7 +21,7 @@ export function AuthProvider({ children }) {
         const currentPath = location.pathname
 
         if (Object.keys(user).length == 0) {
-            if (currentPath == '/posts/create') {
+            if (currentPath == '/posts/create' || currentPath.endsWith('/edit')) {
                 navigate('/users/login')
             }
         } else {
