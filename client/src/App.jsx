@@ -14,6 +14,7 @@ import EditPost from "./components/Cars/Posts/EditPost/EditPost"
 import HomePage from "./components/HomePage/HomePage"
 import Error from "./components/Error/Error"
 import CreatePost from "./components/Cars/Posts/Create_Post/CreatePost"
+import NotFound from "./components/Not_Found/NotFound"
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
             <Route path="/posts/:_id" element={<PostDetails />} />
             <Route path="/posts/create" element={<CreatePost />} />
             <Route path="/posts/:_id/edit" element={<EditPost />} />
+            <Route path="/*" element={<NotFound />} />
           </Routes>
           <Footer />
           <Error />

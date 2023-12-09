@@ -6,14 +6,22 @@ import apiFetch from '../../../../api'
 import { postValidator } from '../../postUtils'
 import ErrorContext from '../../../../contexts/ErrorContext'
 import { errorThrower } from '../../../../utils/utils'
+import AuthContext from '../../../../contexts/AuthContext'
 
 export default function EditPost() {
     const navigate = useNavigate()
     const location = useLocation()
+    const { user } = useContext(AuthContext)
     const fullPost = location.state ? location.state : {}
     const { showError } = useContext(ErrorContext)
     const updatePost = { imageUrl: fullPost.imageUrl, brand: fullPost.brand, model: fullPost.model, productionYear: fullPost.productionYear, description: fullPost.description }
     const { data, changeHandler } = useForm(updatePost)
+
+    useEffect(() => {
+        if(user != fullPost.owner){
+            navigate('/*')
+        }
+    }, [])
 
     async function onSubmitHandler(e) {
         e.preventDefault()
