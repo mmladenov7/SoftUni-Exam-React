@@ -87,7 +87,7 @@ export default function PostDetails() {
                 /> :
                     <div className={styles.detailsUser}>
                         <div className={styles.imageContainer}>
-                            <Link to={`/users/${post.owner?._id}`}><img src={post.owner?.imageUrl}></img></Link>
+                            <Link to={`/users/${post.owner?._id}`}><img src={post.owner?.imageUrl} alt='https://static.vecteezy.com/system/resources/previews/005/576/332/original/car-icon-car-icon-car-icon-simple-sign-free-vector.jpg'></img></Link>
                         </div>
                         <div className={styles.detailsPostInfo}>
                             <h2>{post.owner?.username}</h2>

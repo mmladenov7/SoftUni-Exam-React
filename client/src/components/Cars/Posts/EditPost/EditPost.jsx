@@ -18,7 +18,7 @@ export default function EditPost() {
     const { data, changeHandler } = useForm(updatePost)
 
     useEffect(() => {
-        if(user != fullPost.owner){
+        if(user._id != fullPost.owner._id){
             navigate('/*')
         }
     }, [])
